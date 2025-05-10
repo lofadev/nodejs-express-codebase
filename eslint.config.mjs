@@ -1,6 +1,6 @@
+import pluginJs from '@eslint/js';
 import eslintPluginPrettier from 'eslint-plugin-prettier';
 import globals from 'globals';
-import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
@@ -11,26 +11,32 @@ export default [
   ...tseslint.configs.recommended,
   {
     plugins: {
-      prettier: eslintPluginPrettier
+      prettier: eslintPluginPrettier,
     },
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          varsIgnorePattern: '^_',
+          argsIgnorePattern: '^_',
+        },
+      ],
       'prettier/prettier': [
         'warn',
         {
           arrowParens: 'always',
           semi: true,
-          trailingComma: 'none',
+          trailingComma: 'all',
           tabWidth: 2,
           endOfLine: 'auto',
           useTabs: false,
           singleQuote: true,
           printWidth: 120,
-          jsxSingleQuote: true
-        }
-      ]
+          jsxSingleQuote: true,
+        },
+      ],
     },
-    ignores: ['**/node_modules/', '**/dist/']
-  }
+    ignores: ['**/node_modules/', '**/dist/'],
+  },
 ];
