@@ -14,6 +14,9 @@
     "prepare": "husky",
     "lint-staged": "lint-staged"
   },
+  "engines": {
+    "node": ">=20.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
